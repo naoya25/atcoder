@@ -7,3 +7,6 @@ https://atcoder.jp/contests/abs
 
 python基本入力まとめ
 > https://qiita.com/ell/items/1f519aff0cdc3cf16284
+
+paiza.io
+> https://paiza.io/ja
