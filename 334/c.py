@@ -1,17 +1,19 @@
 def main():
-    n, _ = map(int, input().split())
-    a_list = list(map(int, input().split()))
-
-    lst = list(range(1, n + 1)) + [a for a in range(1, n + 1) if a not in a_list]
-    lst.sort()
-    print(lst)
-
-    if len(lst) % 2 == 1:
-        lst.append(lst[-1])
-
-    min_sum = sum([lst[i + 1] - lst[i] for i in range(0, len(lst), 2)])
-
-    print(min_sum)
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    ans = 0
+    if k % 2 == 0:
+        for i in range(k // 2):
+            ans += a[2 * i + 1] - a[2 * i]
+    else:
+        l = k // 2
+        b = [0] * (l + 1)
+        for i in range(l):
+            b[0] += a[2 * (i + 1)] - a[2 * i + 1]
+        for i in range(l):
+            b[i + 1] = b[i] - (a[2 * (i + 1)] - a[2 * i + 1]) + (a[2 * i + 1] - a[2 * i])
+        ans = min(b)
+    print(ans)
 
 
 if __name__ == "__main__":

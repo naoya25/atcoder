@@ -1,11 +1,23 @@
-# n = int(input())
-# a_list = list(map(int, input().split()))
+def main():
+    n = int(input())
+    a = list(map(int, input().split()))
 
-# print(*[sum(e for e in a_list if e > a) for a in a_list])
+    d = dict()
+    for i, ai in enumerate(a):
+        if ai in d.keys():
+            d[ai].append(i)
+        else:
+            d[ai] = [i]
 
-import numpy as np
+    ans = [0] * n
+    now = 0
+    for k, v in sorted(d.items(), reverse=True):
+        for i in v:
+            ans[i] = now
+        now += k * len(v)
 
-n = int(input())
-a_list = np.array(list(map(int, input().split())))
+    print(*ans)
 
-print(*[np.sum(a_list * (a_list > a)) for a in a_list])
+
+if __name__ == "__main__":
+    main()
