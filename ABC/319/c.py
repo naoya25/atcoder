@@ -5,60 +5,38 @@ def main():
     c = "".join(["".join(input().split()) for _ in range(3)])
     m = 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2  # 9!
 
+    # まず、同じ列、行、斜めに同じ数字のペアがゾン祭するかチェック
+    # 存在していれば、そのペアが先に見られたかチェックする
+
+    i_arr = (
+        [[0, 1, 2], [3, 4, 5], [6, 7, 8]]  # よこ
+        + [[0, 3, 6], [1, 4, 7], [2, 5, 8]]  # たて
+        + [[0, 4, 8], [2, 4, 6]]  # 斜め
+    )
+
+    judge_i_arr = []  # 同じ数字のペアが存在する3つ
+    for a in i_arr:
+        if len(set(map(lambda x: c[x], a))) < 3:
+            judge_i_arr.append(a)
+    # print(judge_i_arr)
+
     cnt = 0
-    for p in itertools.permutations(c):
-        if not judge(c, p):
+    for p in itertools.permutations(range(9)):  # 見る順番の全パターン
+        if not judge(c, p, judge_i_arr):
             cnt += 1
-    print((m - cnt) / m)
+    print(cnt / m)
     return
 
 
-def judge(c, p):
-    # よこ
-    for i in range(3):
-        sc = c[3 * i : 3 * (i + 1)]
-        if sc[0] == sc[1]:
-            if p[3 * i + 2] > max(p[3 * i], p[3 * i + 1]):
-                return False
-        if sc[1] == sc[2]:
-            if p[3 * i] > max(p[3 * i + 1], p[3 * i + 2]):
-                return False
-        if sc[2] == sc[0]:
-            if p[3 * i + 1] > max(p[3 * i + 2], p[3 * i]):
-                return False
-    # たて
-    for i in range(3):
-        sc = [c[i % 3 + j * 3] for j in range(3)]
-        if sc[0] == sc[1]:
-            if p[i % 3 + 2 * 3] > max(p[i % 3], p[i % 3 + 3]):
-                return False
-        if sc[1] == sc[2]:
-            if p[i % 3] > max(p[i % 3 + 3], p[i % 3 + 2 * 3]):
-                return False
-        if sc[2] == sc[0]:
-            if p[i % 3 + 3] > max(p[i % 3 + 2 * 3], p[i % 3]):
-                return False
-    # 斜め
-    if c[0] == c[4]:
-        if p[8] > max(p[0], p[4]):
-            return False
-    if c[4] == c[8]:
-        if p[0] > max(p[4], p[8]):
-            return False
-    if c[8] == c[0]:
-        if p[4] > max(p[8], p[0]):
-            return False
-
-    if c[2] == c[4]:
-        if p[6] > max(p[2], p[4]):
-            return False
-    if c[4] == c[6]:
-        if p[2] > max(p[4], p[6]):
-            return False
-    if c[6] == c[2]:
-        if p[4] > max(p[6], p[2]):
-            return False
-    return True
+def judge(c, p, judge_i_arr):  # がっかりしたらtrue
+    for ia, ib, ic in judge_i_arr:
+        if c[ia] == c[ib] and p[ic] > max(p[ia], p[ib]):
+            return True
+        elif c[ib] == c[ic] and p[ia] > max(p[ib], p[ic]):
+            return True
+        elif c[ic] == c[ia] and p[ib] > max(p[ic], p[ia]):
+            return True
+    return False
 
 
 if __name__ == "__main__":
