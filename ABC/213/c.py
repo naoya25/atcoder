@@ -8,14 +8,15 @@ def main():
         rows.add(a)
         cols.add(b)
 
-    rows_arr = sorted(list(rows))
-    cols_arr = sorted(list(cols))
+    rows = sorted(rows)
+    cols = sorted(cols)
+    rows_dict = {rows[i]: i + 1 for i in range(len(rows))}
+    cols_dict = {cols[i]: i + 1 for i in range(len(cols))}
+    # print(rows_dict)
 
-    for i in range(1, n + 1):
-        a, b = nums[i - 1]
-        print(rows_arr.index(a) + 1, cols_arr.index(b) + 1)
-
-    return
+    for i in range(n):
+        a, b = nums[i]
+        print(rows_dict[a], cols_dict[b])
 
 
 if __name__ == "__main__":
