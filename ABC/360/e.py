@@ -1,37 +1,22 @@
 def main():
     n, k = map(int, input().split())
+    m = 998244353
 
-    expected_value = 1
+    base2 = 2 * pow(n * n, -1, m)
+    base1 = (1 - base2 * (n - 1)) % m
 
-    # 各操作ごとに期待値がどのように変動するかを計算
+    p1, p2 = 1, 0
     for _ in range(k):
-        # 全N個のボールの中から2つを選ぶ方法の数はN*(N-1)
-        expected_value = (expected_value * (n - 1) + (n + 1) // 2) % m
+        np1 = p1 * base1 + p2 * base2 * (n - 1)
+        np2 = ((1 - np1) * pow(n - 1, -1, m)) % m
+        p1, p2 = np1, np2
 
-    print(expected_value)
+    ans = (p1 * 1 + p2 * (n * (n + 1) * pow(2, -1, m) - 1)) % m
+    # print(p1, p2)
+    print(ans)
+
     return
 
 
 if __name__ == "__main__":
     main()
-
-
-def modinv(a, mod):
-    # フェルマーの小定理を用いて逆元を求める
-    return pow(a, mod - 2, mod)
-
-
-def division_mod(p, q):
-    m = 998244353
-    inv_q = modinv(q, m)
-    result = (p * inv_q) % m
-    return result
-
-
-# 例として p = 3, q = 2 とします
-p = 3
-q = 2
-
-# 計算
-result = division_mod(p, q)
-result
