@@ -72,9 +72,14 @@
     "body": ["from collections import defaultdict", "", "dd = defaultdict()"],
     "description": ""
   },
-  "deque": {
-    "prefix": "deque",
+  "queue": {
+    "prefix": "queue",
     "body": ["from collections import deque", "", "queue = deque([(0, 0)])"],
+    "description": ""
+  },
+  "pqueue": {
+    "prefix": "pqueue",
+    "body": ["import heapq", "p_queur = [(0, 0)]"],
     "description": ""
   },
   "d8": {
