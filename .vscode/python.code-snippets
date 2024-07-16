@@ -44,7 +44,7 @@
   },
   "rs": {
     "prefix": "rs",
-    "body": ["[input() for _ in range(n)]"],
+    "body": ["[list(input()) for _ in range(n)]"],
     "description": ""
   },
   "lli": {
