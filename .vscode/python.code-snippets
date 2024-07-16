@@ -12,6 +12,11 @@
     ],
     "description": ""
   },
+  "i": {
+    "prefix": "i",
+    "body": ["input()"],
+    "description": ""
+  },
   "ii": {
     "prefix": "ii",
     "body": ["int(input())"],
