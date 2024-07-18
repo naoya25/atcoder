@@ -82,16 +82,21 @@
     "body": ["import heapq", "p_queur = [(0, 0)]"],
     "description": ""
   },
+  "d4": {
+    "prefix": "d4",
+    "body": ["directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]"],
+    "description": ""
+  },
+  "dn4": {
+    "prefix": "dn4",
+    "body": ["directions = {'R': (0, 1), 'L': (0, -1), 'D': (1, 0), 'U': (-1, 0)}"],
+    "description": ""
+  },
   "d8": {
     "prefix": "d8",
     "body": [
       "directions = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]"
     ],
-    "description": ""
-  },
-  "d4": {
-    "prefix": "d4",
-    "body": ["directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]"],
     "description": ""
   },
   "comb": {
