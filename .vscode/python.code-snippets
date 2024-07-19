@@ -79,7 +79,7 @@
   },
   "pqueue": {
     "prefix": "pqueue",
-    "body": ["import heapq", "p_queur = [(0, 0)]"],
+    "body": ["import heapq", "p_queue = [(0, 0)]"],
     "description": ""
   },
   "d4": {
