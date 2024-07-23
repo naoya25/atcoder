@@ -1,4 +1,6 @@
 def main():
+    r = int(input())
+    print(100 - r % 100)
     return
 
 
