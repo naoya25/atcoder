@@ -1,3 +1,7 @@
+# AtCoder 競プロ典型 90 問 解くぞ!!
+
+https://atcoder.jp/contests/typical90/tasks
+
 # 学びメモ
 
 - 1
