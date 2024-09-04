@@ -9,3 +9,5 @@ https://atcoder.jp/contests/typical90/tasks
 - 2
   - 2 つの状態しかないもの(今回はカッコ)の時は bit に着目すると良い場合がある
   - O(2\*\*n)が耐えてたら bit 全探索が有効の場合が多い
+    - python での bit 全探索は `itertools.product` と `1 << n`の 2 パターンある
+    - itertools は辞書順, 1 << n は bit 列順になる
