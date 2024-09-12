@@ -2,6 +2,8 @@
 
 https://atcoder.jp/contests/typical90/tasks
 
+一旦 ⭐︎4 以下で
+
 # 学びメモ
 
 - 1
@@ -18,3 +20,9 @@ https://atcoder.jp/contests/typical90/tasks
     - 探した点からもう一回一番遠い点を探す
   - つまり DFS 2 回したら求まる
   - グラフの直径を考える問題はむずいのでお馴染みらしい
+- 4
+  - まままって感じ
+- 5
+  - ⭐︎7 は無理
+- 6
+  -
