@@ -25,4 +25,6 @@ https://atcoder.jp/contests/typical90/tasks
 - 5
   - ⭐︎7 は無理
 - 6
-  -
+  - 飛ばし
+- 7
+  - 二分探索頑張ろう
