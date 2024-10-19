@@ -28,7 +28,6 @@ def main():
                     xy = (a, b)
 
             ans = min(total, ans)
-    # 結果を出力
     print(ans)
 
 
