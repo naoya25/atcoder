@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["itertools", "kdir", "popleft"],
+  "cSpell.words": ["itertools", "kdir", "popleft", "sortedcontainers"],
   "[python]": {
     "editor.formatOnType": true,
     "editor.defaultFormatter": "ms-python.black-formatter"
