@@ -28,3 +28,9 @@ https://atcoder.jp/contests/typical90/tasks
   - 飛ばし
 - 7
   - 二分探索頑張ろう
+- 8
+  - DP
+- 9
+  - 飛ばし
+- 10
+  - 問題文がわかりづらいだけ

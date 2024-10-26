@@ -37,8 +37,8 @@
     "body": ["list(input())"],
     "description": ""
   },
-  "lss": {
-    "prefix": "lss",
+  "lis": {
+    "prefix": "lis",
     "body": ["list(input().split())"],
     "description": ""
   },
