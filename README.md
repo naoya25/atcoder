@@ -1,17 +1,18 @@
 # リンク集
-https://andoryoto.github.io/WebApplication/searchapp/
+> [問題検索](https://andoryoto.github.io/WebApplication/searchapp/)
 
-https://kenkoooo.com/atcoder/#/table/naoya1
+> [AtCoder Problems](https://kenkoooo.com/atcoder/#/table/naoya1)
 
-https://atcoder.jp/home
+> [AtCoder Home](https://atcoder.jp/home)
 
-https://atcoder-companions.kakira.dev/
+> [類似回答検索](https://atcoder-companions.kakira.dev/)
 
 # 自分の記事
-https://qiita.com/Naoya_pro/items/96fec49ba51ad2422eb8
+> [AtCoderのはじめ方](https://qiita.com/Naoya_pro/items/96fec49ba51ad2422eb8)
 
 # エイリアス
-```.zshrc
+`.zshrc`
+```zsh
 # 競プロ用
 # ディレクトリ作成
 kdir() {
