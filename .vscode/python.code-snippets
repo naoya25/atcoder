@@ -32,6 +32,11 @@
     "body": ["list(map(int, input().split()))"],
     "description": ""
   },
+  "ti": {
+    "prefix": "ti",
+    "body": ["tuple(map(int, input().split()))"],
+    "description": ""
+  },
   "ls": {
     "prefix": "ls",
     "body": ["list(input())"],
