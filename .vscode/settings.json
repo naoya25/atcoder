@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["itertools", "kdir", "popleft", "sortedcontainers"],
+  "cSpell.words": [
+    "itertools",
+    "kdir",
+    "popleft",
+    "setrecursionlimit",
+    "sortedcontainers",
+    "takahashi"
+  ],
   "[python]": {
     "editor.formatOnType": true,
     "editor.defaultFormatter": "ms-python.black-formatter"
