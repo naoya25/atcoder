@@ -18,8 +18,7 @@
 kdir() {
   mkdir -p "$1" && cd "$1" && touch {a..g}.py
 }
-# スクリプト実行
-kpy() {
-  python "$1.py" < /Users/otsukanaoya/Desktop/programming/atcoder/input.txt
-}
 ```
+
+# スクリプト実行
+`cmd + shift + B`

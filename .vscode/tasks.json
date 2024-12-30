@@ -1,0 +1,20 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Python with input.txt",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${file}",
+                "<",
+                "./input.txt"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
