@@ -1,0 +1,27 @@
+name: Auto Commit and Push
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # 毎日0時
+  workflow_dispatch:
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run script
+        run: |
+          python submissions/aggregate_submission.py

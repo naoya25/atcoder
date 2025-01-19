@@ -78,8 +78,8 @@ def main():
         print(f"Saved: {file_path}")
         add_count += 1
     print(f"Added {add_count} files")
-    if add_count > 0:
-        git_commit_and_push()
+    # if add_count > 0:
+    git_commit_and_push()
     return
 
 
