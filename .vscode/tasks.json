@@ -10,15 +10,6 @@
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": [],
-      "dependsOn": "Run aggregate_submission.py",
-      "dependsOrder": "sequence"
-    },
-    {
-      "label": "Run aggregate_submission.py",
-      "type": "shell",
-      "command": "python",
-      "args": ["submissions/aggregate_submission.py"],
       "problemMatcher": []
     }
   ]

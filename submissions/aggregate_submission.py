@@ -48,10 +48,8 @@ def getSubmissionCode(contest_id, submission_id):
 
 def git_commit_and_push():
     os.system("git pull")
-    os.system("git add submissions")
-    commit_message = (
-        f"update submissions {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
-    )
+    os.system("git add .")
+    commit_message = f"log at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
     os.system(f'git commit -m "{commit_message}"')
     os.system("git push")
 
