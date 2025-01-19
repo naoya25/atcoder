@@ -2,12 +2,14 @@ import requests
 import json
 from bs4 import BeautifulSoup
 import os
+import time
 
 USER_ID = "naoya1"
 API_PATH = "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions"
 
 
-# 提出データの取得
+# 提出データを最大500件取得
+# 過去1週間分
 # id: 提出ID
 # epoch_second: 提出時間
 # problem_id: 問題ID
@@ -19,7 +21,8 @@ API_PATH = "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions"
 # result: 結果
 # execution_time: 実行時間
 def getSubmissionData(userID):
-    params = {"user": userID, "from_second": 0}
+    unix_second = int(time.time()) - 7 * 24 * 60 * 60
+    params = {"user": userID, "from_second": unix_second}
     response = requests.get(API_PATH, params=params)
     try:
         jsonData = response.json()
@@ -31,15 +34,19 @@ def getSubmissionData(userID):
 
 
 def getSubmissionCode(contest_id, submission_id):
-    url = f"https://atcoder.jp/contests/{contest_id}/submissions/{submission_id}"
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, "html.parser")
-    code = soup.find("pre", id="submission-code")
-    return url, code.text
+    try:
+        url = f"https://atcoder.jp/contests/{contest_id}/submissions/{submission_id}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+        code = soup.find("pre", id="submission-code")
+        return url, code.text
+    except Exception as e:
+        return url, "error"
 
 
 def main():
     submissions = getSubmissionData(USER_ID)
+    add_count = 0
     for submission in submissions:
         url, code = getSubmissionCode(submission["contest_id"], submission["id"])
         ext = "py" if "python" in submission["language"].lower() else "txt"
@@ -53,10 +60,14 @@ def main():
             continue
         with open(file_path, "w") as f:
             f.write(f"# URL: {url}\n")
-            f.write(f"# Language: {submission['language']}\n\n")
-            f.write("# submitted code\n")
+            for key, value in submission.items():
+                f.write(f"# {key}: {value}\n")
+            f.write("\n")
+            f.write("\n# submitted code\n")
             f.write(code)
         print(f"Saved: {file_path}")
+        add_count += 1
+    print(f"Added {add_count} files")
     return
 
 
