@@ -6,6 +6,7 @@
     "popleft",
     "setrecursionlimit",
     "sortedcontainers",
+    "ssum",
     "takahashi"
   ],
   "[python]": {
