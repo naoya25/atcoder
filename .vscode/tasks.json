@@ -4,7 +4,7 @@
     {
       "label": "Run Python with input.txt",
       "type": "shell",
-      "command": "python",
+      "command": ".venv/bin/python",
       "args": ["${file}", "<", "./input.txt"],
       "group": {
         "kind": "build",
