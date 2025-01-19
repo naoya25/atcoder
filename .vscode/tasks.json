@@ -1,20 +1,25 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Run Python with input.txt",
-            "type": "shell",
-            "command": "python",
-            "args": [
-                "${file}",
-                "<",
-                "./input.txt"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": []
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Python with input.txt",
+      "type": "shell",
+      "command": "python",
+      "args": ["${file}", "<", "./input.txt"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "dependsOn": "Run aggregate_submission.py",
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "Run aggregate_submission.py",
+      "type": "shell",
+      "command": "python",
+      "args": ["submissions/aggregate_submission.py"],
+      "problemMatcher": []
+    }
+  ]
 }
