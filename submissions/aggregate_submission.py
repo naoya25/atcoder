@@ -44,6 +44,13 @@ def getSubmissionCode(contest_id, submission_id):
         return url, "error"
 
 
+def git_commit_and_push():
+    os.system("git pull")
+    os.system("git add submissions")
+    os.system('git commit -m "update submissions"')
+    os.system("git push")
+
+
 def main():
     submissions = getSubmissionData(USER_ID)
     add_count = 0
@@ -68,6 +75,8 @@ def main():
         print(f"Saved: {file_path}")
         add_count += 1
     print(f"Added {add_count} files")
+    if add_count > 0:
+        git_commit_and_push()
     return
 
 
