@@ -10,15 +10,8 @@
 # 自分の記事
 > [AtCoderのはじめ方](https://qiita.com/Naoya_pro/items/96fec49ba51ad2422eb8)
 
-# エイリアス
-`.zshrc`
-```zsh
-# 競プロ用
-# ディレクトリ作成
-kdir() {
-  mkdir -p "$1" && cd "$1" && touch {a..g}.py
-}
-```
+# AtCoderBeginnerContestのディレクトリ作成
+`make {dir_name}`で、`ABC/{dir_name}/a.py ~ g.py`ディレクトリを作成
 
 # スクリプト実行
 `cmd + shift + B`
