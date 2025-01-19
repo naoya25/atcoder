@@ -3,6 +3,8 @@ import json
 from bs4 import BeautifulSoup
 import os
 import time
+from datetime import datetime
+
 
 USER_ID = "naoya1"
 API_PATH = "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions"
@@ -47,7 +49,10 @@ def getSubmissionCode(contest_id, submission_id):
 def git_commit_and_push():
     os.system("git pull")
     os.system("git add submissions")
-    os.system('git commit -m "update submissions"')
+    commit_message = (
+        f"update submissions {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    )
+    os.system(f'git commit -m "{commit_message}"')
     os.system("git push")
 
 
