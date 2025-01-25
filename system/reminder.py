@@ -1,12 +1,15 @@
+# GitHub Actionsで実行するためのファイル
+# ローカルでは実行しない
 import requests
 from bs4 import BeautifulSoup
 from dataclasses import dataclass
 from datetime import datetime
 import json
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
+# from dotenv import load_dotenv
+
+# load_dotenv()
 
 
 @dataclass
