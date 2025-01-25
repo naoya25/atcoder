@@ -3,6 +3,7 @@
     "collatz",
     "itertools",
     "kdir",
+    "KHTML",
     "popleft",
     "setrecursionlimit",
     "sortedcontainers",
