@@ -19,7 +19,7 @@ def create_files():
     dir_name = sys.argv[1]
     files = ["a.py", "b.py", "c.py", "d.py", "e.py", "f.py", "g.py"]
 
-    dir_path = os.path.join("ABC", dir_name)
+    dir_path = os.path.join("./ABC", dir_name)
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
     else:

@@ -22,7 +22,7 @@ API_PATH = "https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions"
 # length: コード長
 # result: 結果
 # execution_time: 実行時間
-def getSubmissionData(userID):
+def get_submission_data(userID):
     unix_second = int(time.time()) - 7 * 24 * 60 * 60
     params = {"user": userID, "from_second": unix_second}
     response = requests.get(API_PATH, params=params)
@@ -35,7 +35,7 @@ def getSubmissionData(userID):
     return jsonData
 
 
-def getSubmissionCode(contest_id, submission_id):
+def get_submission_code(contest_id, submission_id):
     try:
         url = f"https://atcoder.jp/contests/{contest_id}/submissions/{submission_id}"
         response = requests.get(url)
@@ -55,10 +55,10 @@ def git_commit_and_push():
 
 
 def main():
-    submissions = getSubmissionData(USER_ID)
+    submissions = get_submission_data(USER_ID)
     add_count = 0
     for submission in submissions:
-        url, code = getSubmissionCode(submission["contest_id"], submission["id"])
+        url, code = get_submission_code(submission["contest_id"], submission["id"])
         ext = "py" if "python" in submission["language"].lower() else "txt"
 
         dir_path = f"submissions/{submission['result']}"

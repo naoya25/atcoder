@@ -1,7 +1,7 @@
 # 提出コードの集計してログを取る
 log:
-	python submissions/aggregate_submission.py
+	python system/make_log.py
 
 # ワイルドカード: make {dir_name}
 %:
-	@python make_dir.py $@
+	@python system/make_dir.py $@
