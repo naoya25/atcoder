@@ -8,6 +8,7 @@
     "setrecursionlimit",
     "sortedcontainers",
     "ssum",
+    "submasks",
     "takahashi"
   ],
   "[python]": {

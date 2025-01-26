@@ -1,0 +1,90 @@
+# URL: https://atcoder.jp/contests/abc390/submissions/62098014
+# id: 62098014
+# epoch_second: 1737812572
+# problem_id: abc390_e
+# contest_id: abc390
+# user_id: naoya1
+# language: C++ 20 (gcc 12.2)
+# point: 0.0
+# length: 2019
+# result: RE
+# execution_time: 2342
+
+
+# submitted code
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+
+using namespace std;
+
+const long long INF = 1e15;
+
+int main() {
+    int n, x;
+    cin >> n >> x;
+
+    vector<pair<int, int>> vitamin1, vitamin2, vitamin3;
+
+    for (int i = 0; i < n; i++) {
+        int v, a, c;
+        cin >> v >> a >> c;
+        if (v == 1) {
+            vitamin1.emplace_back(a, c);
+        } else if (v == 2) {
+            vitamin2.emplace_back(a, c);
+        } else {
+            vitamin3.emplace_back(a, c);
+        }
+    }
+
+    auto calc_max = [](const vector<pair<int, int>>& vitamins) {
+        long long sum = 0;
+        for (const auto& p : vitamins) {
+            sum += p.first;
+        }
+        return sum;
+    };
+
+    long long max1 = calc_max(vitamin1);
+    long long max2 = calc_max(vitamin2);
+    long long max3 = calc_max(vitamin3);
+
+    long long m_max = min({max1, max2, max3});
+
+    vector<long long> dp1(m_max + 1, INF), dp2(m_max + 1, INF), dp3(m_max + 1, INF);
+    dp1[0] = dp2[0] = dp3[0] = 0;
+
+    auto update_dp = [](vector<long long>& dp, const vector<pair<int, int>>& vitamins, long long m_max) {
+        for (const auto& [a, c] : vitamins) {
+            for (long long v = m_max; v >= 0; --v) {
+                if (dp[v] == INF) continue;
+                long long nv = v + a;
+                if (nv >= m_max) nv = m_max;
+                dp[nv] = min(dp[nv], dp[v] + c);
+            }
+        }
+        for (long long v = m_max - 1; v >= 0; --v) {
+            dp[v] = min(dp[v], dp[v + 1]);
+        }
+    };
+
+    update_dp(dp1, vitamin1, m_max);
+    update_dp(dp2, vitamin2, m_max);
+    update_dp(dp3, vitamin3, m_max);
+
+    long long left = 0, right = m_max + 1;
+    while (left + 1 < right) {
+        long long mid = (left + right) / 2;
+        if (dp1[mid] + dp2[mid] + dp3[mid] <= x) {
+            left = mid;
+        } else {
+            right = mid;
+        }
+    }
+
+    cout << left << endl;
+
+    return 0;
+}
