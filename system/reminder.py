@@ -5,9 +5,9 @@ from datetime import datetime
 import json
 import os
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 
 @dataclass
@@ -20,8 +20,11 @@ class Contest:
 
     def get_upcoming_contests(self):
         url = "https://atcoder.jp"
+        dummy_user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         try:
-            response = requests.get(url + "/contests/")
+            response = requests.get(
+                url + "/contests/", headers={"User-Agent": dummy_user_agent}
+            )
             response.raise_for_status()
         except requests.RequestException as e:
             raise Exception(f"get_next_contest: Failed to fetch {url} - {e}")
