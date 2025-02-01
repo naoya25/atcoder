@@ -1,7 +1,7 @@
 import bisect
 
 
-def solve():
+def main():
     n, w = map(int, input().split())
     blocks = []
     for i in range(n):
@@ -63,4 +63,4 @@ def solve():
 
 
 if __name__ == "__main__":
-    solve()
+    main()
