@@ -4,8 +4,7 @@
 import os
 import sys
 
-FILE_TEMPLATE = """
-def main():
+FILE_TEMPLATE = """def main():
     return
 
 
