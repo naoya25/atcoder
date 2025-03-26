@@ -34,3 +34,7 @@ https://atcoder.jp/contests/typical90/tasks
   - 飛ばし
 - 10
   - 問題文がわかりづらいだけ
+- 11
+  - 飛ばし
+- 12
+  - 

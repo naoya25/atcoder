@@ -1,6 +1,6 @@
 {
-  "tmp": {
-    "prefix": "tmp",
+  "tmp_python": {
+    "prefix": "tmp_python",
     "body": [
       "def main():",
       "    return",

@@ -17,5 +17,8 @@
   },
   "pylint.args": [
     "\"pylint.args\": [\"--disable=C0111\", \"--max-line-length=120\"]"
-  ]
+  ],
+  "code-runner.executorMap": {
+    "dart": "cd $dir && dart run $fileName < /Users/otsukanaoya/Desktop/programming/atcoder/input.txt"
+  }
 }
