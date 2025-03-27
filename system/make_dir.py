@@ -17,6 +17,7 @@ if __name__ == "__main__":
 def create_files():
     dir_name = sys.argv[1]
     files = ["a.py", "b.py", "c.py", "d.py", "e.py", "f.py", "g.py"]
+    files_dart = ["a.dart", "b.dart", "c.dart", "d.dart", "e.dart", "f.dart", "g.dart"]
 
     dir_path = os.path.join("./ABC", dir_name)
     if not os.path.exists(dir_path):
@@ -24,10 +25,13 @@ def create_files():
     else:
         print(f"Directory '{dir_path}' already exists.")
         return
-    for file in files:
+
+    is_dart = "dart" in dir_name
+
+    for file in files if not is_dart else files_dart:
         file_path = os.path.join(dir_path, file)
         with open(file_path, "w") as f:
-            f.write(FILE_TEMPLATE)
+            f.write(FILE_TEMPLATE if not is_dart else "")
         print(f"Created: {file_path}")
 
 

@@ -39,10 +39,22 @@ class Input {
     return int.parse(getString());
   }
 
+  int getIntZeroIndexed() {
+    return getInt() - 1;
+  }
+
   List<int> getInts(int n) {
     final result = <int>[];
     for (int i = 0; i < n; ++i) {
       result.add(getInt());
+    }
+    return result;
+  }
+
+  List<int> getIntsZeroIndexed(int n) {
+    final result = <int>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getIntZeroIndexed());
     }
     return result;
   }
@@ -52,52 +64,21 @@ class Input {
   }
 }
 
-// 座標(x, y)
-class Point {
-  int x;
-  int y;
-
-  Point(this.x, this.y);
-
-  @override
-  bool operator ==(Object other) =>
-      other is Point && other.x == x && other.y == y;
-
-  @override
-  int get hashCode => Object.hash(x, y);
-
-  @override
-  String toString() => '$x, $y';
-}
-
 void main() {
   final input = Input();
   int n = input.getInt();
+  List<int> a = input.getInts(n);
 
-  for (int d = 1; d * d * d <= n; ++d) {
-    if (n % d != 0) continue;
+  Map<int, int> indexMemo = {};
 
-    int m = n ~/ d;
-    int k = sol(3, 3 * d, d * d - m);
-
-    if (k > 0) {
-      print('${k + d} $k');
-      return;
+  int ans = -1;
+  for (int i = 0; i < n; i++) {
+    if (indexMemo.containsKey(a[i])) {
+      int l = i - indexMemo[a[i]]! + 1;
+      ans = (ans == -1 || l < ans) ? l : ans;
     }
+    indexMemo[a[i]] = i;
   }
 
-  print(-1);
-}
-
-int sol(int a, int b, int c) {
-  int l = 0, r = 600000001;
-  while (r - l > 1) {
-    int mid = (l + r) ~/ 2;
-    if (a * mid * mid + b * mid + c <= 0)
-      l = mid;
-    else
-      r = mid;
-  }
-  if (a * l * l + b * l + c == 0) return l;
-  return -1;
+  print(ans);
 }
