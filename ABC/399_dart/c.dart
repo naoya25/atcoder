@@ -1,3 +1,111 @@
+import 'dart:io';
+import 'dart:convert';
+
+void main() {
+  final input = Input();
+  final [n, m] = input.getInts(2);
+
+  final graph = UndirectedGraph(n);
+  for (int i = 0; i < m; ++i) {
+    final [u, v] = input.getInts0idx(2);
+    graph.addEdge(u, v);
+  }
+
+  final visited = List<bool>.filled(n, false);
+  int count = 0;
+  for (int i = 0; i < n; i++) {
+    if (!visited[i]) {
+      count++;
+      graph.dfs(i, visited);
+    }
+  }
+
+  print(m - n + count);
+}
+
+class Input {
+  static Input? _instance;
+  Input._() : data = File('/dev/stdin').readAsStringSync(encoding: utf8);
+
+  factory Input() {
+    _instance ??= Input._();
+    return _instance!;
+  }
+
+  final String data;
+  int pos = 0;
+
+  bool isSpace(String ch) {
+    return ch == " " || ch == "\n";
+  }
+
+  String getString() {
+    var p = pos;
+    while (p < data.length && isSpace(data[p])) p++;
+    final from = p;
+    while (p < data.length && !isSpace(data[p])) p++;
+    final to = p;
+    pos = p;
+    return data.substring(from, to);
+  }
+
+  List<String> getStringAsList() {
+    return getString().split('');
+  }
+
+  List<String> getStrings(int n) {
+    final result = <String>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getString());
+    }
+    return result;
+  }
+
+  int getInt() {
+    return int.parse(getString());
+  }
+
+  int getInt0idx() {
+    return getInt() - 1;
+  }
+
+  List<int> getInts(int n) {
+    final result = <int>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInt());
+    }
+    return result;
+  }
+
+  List<int> getInts0idx(int n) {
+    final result = <int>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInt0idx());
+    }
+    return result;
+  }
+
+  double getDouble() {
+    return double.parse(getString());
+  }
+
+  List<List<int>> getInt2d(int n, int m) {
+    final result = <List<int>>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInts(m));
+    }
+    return result;
+  }
+}
+
+void printBool(bool b) {
+  print(b ? 'Yes' : 'No');
+}
+
+void printList(List list, {String separator = ' '}) {
+  print(list.join(separator));
+}
+
 // 辺
 class Edge {
   final int from;
@@ -98,25 +206,5 @@ class UndirectedGraph {
         }
       }
     }
-  }
-}
-
-// 有向グラフ (0-indexed)
-class DirectedGraph {
-  DirectedGraph(int n) : _adj = Map(), _n = n;
-
-  final Map<int, Set<Edge>> _adj;
-  final int _n;
-
-  int get n => _n;
-  Map<int, Set<Edge>> get adj => _adj;
-
-  void addEdge(int from, int to, [int weight = 1]) {
-    if (!_adj.containsKey(from)) _adj[from] = <Edge>{};
-    _adj[from]?.add(Edge(from, to, weight));
-  }
-
-  Set<Edge> getEdges(int node) {
-    return _adj[node] ?? <Edge>{};
   }
 }
