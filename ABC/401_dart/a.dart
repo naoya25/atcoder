@@ -2,18 +2,21 @@ import 'dart:io';
 import 'dart:convert';
 
 void main() {
-  final input = Input();
-  int n = input.getInt();
-
-  print(n);
+  final input = _Input();
+  String s = input.getString();
+  if (s[0] == '2') {
+    print('Success');
+  } else {
+    print('Failure');
+  }
 }
 
-class Input {
-  static Input? _instance;
-  Input._() : data = File('/dev/stdin').readAsStringSync(encoding: utf8);
+class _Input {
+  static _Input? _instance;
+  _Input._() : data = File('/dev/stdin').readAsStringSync(encoding: utf8);
 
-  factory Input() {
-    _instance ??= Input._();
+  factory _Input() {
+    _instance ??= _Input._();
     return _instance!;
   }
 
