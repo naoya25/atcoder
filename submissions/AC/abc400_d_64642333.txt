@@ -1,0 +1,173 @@
+# URL: https://atcoder.jp/contests/abc400/submissions/64642333
+# id: 64642333
+# epoch_second: 1744159190
+# problem_id: abc400_d
+# contest_id: abc400
+# user_id: naoya1
+# language: Dart (Dart 3.0.5)
+# point: 400.0
+# length: 3371
+# result: AC
+# execution_time: 306
+
+
+# submitted code
+import 'dart:io';
+import 'dart:convert';
+import 'dart:collection';
+
+void main() {
+  final input = Input();
+  final [h, w] = input.getInts(2);
+  final s = input.getStrings2d(h, w);
+  final [a, b, c, d] = input.getInts0idx(4);
+
+  final start = (a, b);
+  final goal = (c, d);
+
+  final directions = [(0, 1), (1, 0), (0, -1), (-1, 0)];
+
+  final kickDirections = [
+    (0, 1),
+    (0, 2),
+    (1, 0),
+    (2, 0),
+    (0, -1),
+    (0, -2),
+    (-1, 0),
+    (-2, 0),
+  ];
+
+  final dist = List.generate(h, (_) => List.filled(w, h * w + 1));
+  final deque = ListQueue<(int, int)>();
+
+  dist[start.$1][start.$2] = 0;
+  deque.addLast(start);
+
+  while (deque.isNotEmpty) {
+    final (cr, cc) = deque.removeFirst();
+    final currentKick = dist[cr][cc];
+
+    if (cr == goal.$1 && cc == goal.$2) {
+      print(currentKick);
+      return;
+    }
+
+    for (final (dr, dc) in directions) {
+      final nr = cr + dr;
+      final nc = cc + dc;
+
+      if (nr >= 0 && nr < h && nc >= 0 && nc < w && s[nr][nc] == '.') {
+        if (dist[nr][nc] > currentKick) {
+          dist[nr][nc] = currentKick;
+          deque.addFirst((nr, nc));
+        }
+      }
+    }
+
+    for (final (dr, dc) in kickDirections) {
+      final nr = cr + dr;
+      final nc = cc + dc;
+
+      if (nr >= 0 && nr < h && nc >= 0 && nc < w) {
+        if (dist[nr][nc] > currentKick + 1) {
+          dist[nr][nc] = currentKick + 1;
+          deque.addLast((nr, nc));
+        }
+      }
+    }
+  }
+
+  print(-1);
+}
+
+class Input {
+  static Input? _instance;
+  Input._() : data = File('/dev/stdin').readAsStringSync(encoding: utf8);
+
+  factory Input() {
+    _instance ??= Input._();
+    return _instance!;
+  }
+
+  final String data;
+  int pos = 0;
+
+  bool isSpace(String ch) {
+    return ch == " " || ch == "\n";
+  }
+
+  String getString() {
+    var p = pos;
+    while (p < data.length && isSpace(data[p])) p++;
+    final from = p;
+    while (p < data.length && !isSpace(data[p])) p++;
+    final to = p;
+    pos = p;
+    return data.substring(from, to);
+  }
+
+  List<String> getStringAsList() {
+    return getString().split('');
+  }
+
+  List<String> getStrings(int n) {
+    final result = <String>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getString());
+    }
+    return result;
+  }
+
+  List<List<String>> getStrings2d(int n, int m) {
+    final result = <List<String>>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getStringAsList());
+    }
+    return result;
+  }
+
+  int getInt() {
+    return int.parse(getString());
+  }
+
+  int getInt0idx() {
+    return getInt() - 1;
+  }
+
+  List<int> getInts(int n) {
+    final result = <int>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInt());
+    }
+    return result;
+  }
+
+  List<int> getInts0idx(int n) {
+    final result = <int>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInt0idx());
+    }
+    return result;
+  }
+
+  double getDouble() {
+    return double.parse(getString());
+  }
+
+  List<List<int>> getInt2d(int n, int m) {
+    final result = <List<int>>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInts(m));
+    }
+    return result;
+  }
+}
+
+void printBool(bool b) {
+  print(b ? 'Yes' : 'No');
+}
+
+void printList(List list, {String separator = ' '}) {
+  print(list.join(separator));
+}

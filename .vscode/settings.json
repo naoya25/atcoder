@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "collatz",
+    "deque",
     "itertools",
     "kdir",
     "KHTML",

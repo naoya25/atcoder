@@ -1,0 +1,150 @@
+# URL: https://atcoder.jp/contests/abc400/submissions/64641827
+# id: 64641827
+# epoch_second: 1744155098
+# problem_id: abc400_c
+# contest_id: abc400
+# user_id: naoya1
+# language: Dart (Dart 3.0.5)
+# point: 0.0
+# length: 2768
+# result: TLE
+# execution_time: 2213
+
+
+# submitted code
+import 'dart:io';
+import 'dart:convert';
+
+void main() {
+  final input = Input();
+  int n = input.getInt();
+
+  int ans = 0;
+  for (int p in range(1, n + 1, 2)) {
+    int i = p * p * 2;
+    while (i <= n) {
+      ans++;
+      if (i > n ~/ 2) break;
+      i *= 2;
+    }
+  }
+  print(ans);
+}
+
+class Input {
+  static Input? _instance;
+  Input._() : data = File('/dev/stdin').readAsStringSync(encoding: utf8);
+
+  factory Input() {
+    _instance ??= Input._();
+    return _instance!;
+  }
+
+  final String data;
+  int pos = 0;
+
+  bool isSpace(String ch) {
+    return ch == " " || ch == "\n";
+  }
+
+  String getString() {
+    var p = pos;
+    while (p < data.length && isSpace(data[p])) p++;
+    final from = p;
+    while (p < data.length && !isSpace(data[p])) p++;
+    final to = p;
+    pos = p;
+    return data.substring(from, to);
+  }
+
+  List<String> getStringAsList() {
+    return getString().split('');
+  }
+
+  List<String> getStrings(int n) {
+    final result = <String>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getString());
+    }
+    return result;
+  }
+
+  int getInt() {
+    return int.parse(getString());
+  }
+
+  int getInt0idx() {
+    return getInt() - 1;
+  }
+
+  List<int> getInts(int n) {
+    final result = <int>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInt());
+    }
+    return result;
+  }
+
+  List<int> getInts0idx(int n) {
+    final result = <int>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInt0idx());
+    }
+    return result;
+  }
+
+  double getDouble() {
+    return double.parse(getString());
+  }
+
+  List<List<int>> getInt2d(int n, int m) {
+    final result = <List<int>>[];
+    for (int i = 0; i < n; ++i) {
+      result.add(getInts(m));
+    }
+    return result;
+  }
+}
+
+void printBool(bool b) {
+  print(b ? 'Yes' : 'No');
+}
+
+void printList(List list, {String separator = ' '}) {
+  print(list.join(separator));
+}
+
+RangeIterable range(int from, [int? to, int? step]) =>
+    RangeIterable(from, to, step);
+
+class RangeIterable extends Iterable<int> {
+  RangeIterable(int from, [int? to, int? step])
+    : iterator = RangeIterator(from, to, step),
+      super();
+
+  @override
+  final RangeIterator iterator;
+}
+
+class RangeIterator implements Iterator<int> {
+  RangeIterator(int n, [int? m, int? s])
+    : from = m == null ? 0 : n,
+      to = m == null ? n : m,
+      step = s ?? 1,
+      current = (m == null ? 0 : n) - (s ?? 1);
+
+  final int from;
+  final int to;
+  final int step;
+
+  @override
+  late int current;
+
+  @override
+  bool moveNext() {
+    current += step;
+    if (step > 0 && current >= to) return false;
+    if (step < 0 && current <= to) return false;
+    return true;
+  }
+}
