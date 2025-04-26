@@ -3,9 +3,17 @@ import 'dart:convert';
 
 void main() {
   final input = _Input();
-  int n = input.getInt();
+  String s = input.getString();
+  List<String> sList = s.split('');
 
-  print(n);
+  String ans = '';
+  for (int i = 0; i < sList.length; i++) {
+    if (sList[i] == sList[i].toUpperCase()) {
+      ans += sList[i];
+    }
+  }
+
+  print(ans);
 }
 
 class _Input {
@@ -98,4 +106,3 @@ void printBool(bool b) {
 void printList(List list, {String separator = ' '}) {
   print(list.join(separator));
 }
-

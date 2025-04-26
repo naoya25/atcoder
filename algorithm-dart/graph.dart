@@ -1,10 +1,10 @@
 // 辺
 class Edge {
+  Edge(this.from, this.to, this.weight);
+
   final int from;
   final int to;
   final int weight;
-
-  Edge(this.from, this.to, this.weight);
 
   @override
   bool operator ==(Object other) =>

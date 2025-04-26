@@ -3,9 +3,28 @@ import 'dart:convert';
 
 void main() {
   final input = _Input();
-  int n = input.getInt();
+  final n = input.getInt();
+  final m = input.getInt();
 
-  print(n);
+  final freq = <int, int>{};
+
+  for (int i = 0; i < m; i++) {
+    int a = input.getInt();
+    int b = input.getInt();
+
+    int key = (a + b) % n;
+    if (key < 0) key += n;
+    freq[key] = (freq[key] ?? 0) + 1;
+  }
+
+  int total = m * (m - 1) ~/ 2;
+
+  int bad = 0;
+  for (int f in freq.values) {
+    bad += f * (f - 1) ~/ 2;
+  }
+
+  print(total - bad);
 }
 
 class _Input {
@@ -98,4 +117,3 @@ void printBool(bool b) {
 void printList(List list, {String separator = ' '}) {
   print(list.join(separator));
 }
-

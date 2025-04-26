@@ -1,11 +1,21 @@
+import 'dart:collection';
 import 'dart:io';
 import 'dart:convert';
 
 void main() {
   final input = _Input();
-  int n = input.getInt();
+  int q = input.getInt();
 
-  print(n);
+  final queue = Queue<int>();
+  for (int i = 0; i < q; i++) {
+    final qt = input.getInt();
+    if (qt == 1) {
+      final x = input.getInt();
+      queue.add(x);
+    } else {
+      print(queue.removeFirst());
+    }
+  }
 }
 
 class _Input {
@@ -98,4 +108,3 @@ void printBool(bool b) {
 void printList(List list, {String separator = ' '}) {
   print(list.join(separator));
 }
-
