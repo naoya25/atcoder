@@ -30,14 +30,14 @@ def create_files():
     is_dart = "dart" in dir_name
     target_files = files if not is_dart else files_dart
 
-    for file in target_files:
-        file_path = os.path.join(dir_path, file)
+    for t_file in target_files:
+        file_path = os.path.join(dir_path, t_file)
         with open(file_path, "w") as f:
             f.write(FILE_TEMPLATE if not is_dart else "")
         print(f"Created: {file_path}")
 
-    first_file = os.path.join(dir_path, target_files[0])
-    subprocess.run(["trae", first_file])
+    open_cmd = ["trae", os.path.join(dir_path, target_files[0]), "./input.txt"]
+    subprocess.run(open_cmd)
 
 
 if __name__ == "__main__":
