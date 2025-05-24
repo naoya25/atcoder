@@ -1,0 +1,26 @@
+# URL: https://atcoder.jp/contests/abc406/submissions/65849013
+# id: 65849013
+# epoch_second: 1747483313
+# problem_id: abc406_a
+# contest_id: abc406
+# user_id: naoya1
+# language: Dart (Dart 3.0.5)
+# point: 0.0
+# length: 193
+# result: CE
+# execution_time: None
+
+
+# submitted code
+def main():
+    a, b, c, d = map(int, input().split())
+    if a > c or b > d:
+        print("Yes")
+    else:
+        print("No")
+
+    return
+
+
+if __name__ == "__main__":
+    main()

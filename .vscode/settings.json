@@ -6,12 +6,14 @@
     "itertools",
     "kdir",
     "KHTML",
+    "ntight",
     "popleft",
     "setrecursionlimit",
     "sortedcontainers",
     "ssum",
     "submasks",
-    "takahashi"
+    "takahashi",
+    "trae"
   ],
   "[python]": {
     "editor.formatOnType": true,
@@ -20,8 +22,9 @@
   "pylint.args": [
     "\"pylint.args\": [\"--disable=C0111\", \"--max-line-length=120\"]"
   ],
+  "code-runner.clearPreviousOutput": true,
   "code-runner.executorMap": {
-    "dart": "cd /Users/otsukanaoya/Desktop/programming/atcoder && dart run $dir/$fileName < ./input.txt",
-    "python": "cd /Users/otsukanaoya/Desktop/programming/atcoder && python -u $dir/$fileName < ./input.txt"
+    "dart": "dart run $dir/$fileName < ./input.txt",
+    "python": "python3 -u $dir/$fileName < ./input.txt"
   }
 }

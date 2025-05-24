@@ -3,6 +3,7 @@
 
 import os
 import sys
+import subprocess
 
 FILE_TEMPLATE = """def main():
     return
@@ -27,12 +28,16 @@ def create_files():
         return
 
     is_dart = "dart" in dir_name
+    target_files = files if not is_dart else files_dart
 
-    for file in files if not is_dart else files_dart:
+    for file in target_files:
         file_path = os.path.join(dir_path, file)
         with open(file_path, "w") as f:
             f.write(FILE_TEMPLATE if not is_dart else "")
         print(f"Created: {file_path}")
+
+    first_file = os.path.join(dir_path, target_files[0])
+    subprocess.run(["trae", first_file])
 
 
 if __name__ == "__main__":
