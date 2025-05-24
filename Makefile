@@ -4,8 +4,8 @@ help: ## ヘルプを表示します。
 
 
 log: ## 提出コードの集計してログを取る
-	python system/make_log.py
+	@python3 system/make_log.py
 
 
 %: ## ワイルドカード: make {dir_name}
-	@python system/make_dir.py $@
+	@python3 system/make_dir.py $@
