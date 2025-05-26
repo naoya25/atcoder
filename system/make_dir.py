@@ -36,7 +36,7 @@ def create_files():
             f.write(FILE_TEMPLATE if not is_dart else "")
         print(f"Created: {file_path}")
 
-    open_cmd = ["trae", os.path.join(dir_path, target_files[0]), "./input.txt"]
+    open_cmd = ["cursor", os.path.join(dir_path, target_files[0]), "./input.txt"]
     subprocess.run(open_cmd)
 
 
