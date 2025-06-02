@@ -82,9 +82,9 @@
     "body": ["from collections import deque", "", "queue = deque([(0, 0)])"],
     "description": ""
   },
-  "pqueue": {
-    "prefix": "pqueue",
-    "body": ["import heapq", "p_queue = [(0, 0)]"],
+  "pq": {
+    "prefix": "pq",
+    "body": ["import heapq", "pq = [(0, 0)]"],
     "description": ""
   },
   "d4": {
