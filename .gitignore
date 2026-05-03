@@ -3,3 +3,5 @@ input.txt
 .env
 .trae/
 .venv/
+
+target/

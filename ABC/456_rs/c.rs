@@ -1,0 +1,66 @@
+use std::io::{self, Read};
+
+#[allow(dead_code)] // 構造体全体への警告をオフにする
+struct Scanner {
+    tokens: std::vec::IntoIter<String>,
+}
+
+#[allow(dead_code)] // impl内のメソッドへの警告をオフにする
+impl Scanner {
+    fn new() -> Self {
+        let mut buffer = String::new();
+        io::stdin().read_to_string(&mut buffer).expect("Read error");
+        let tokens: Vec<String> = buffer.split_whitespace().map(|s| s.to_string()).collect();
+        Self {
+            tokens: tokens.into_iter(),
+        }
+    }
+
+    fn next<T: std::str::FromStr>(&mut self) -> T {
+        self.tokens
+            .next()
+            .expect("No more tokens")
+            .parse()
+            .ok()
+            .expect("Parse error")
+    }
+
+    fn next_0idx(&mut self) -> usize {
+        self.next::<usize>() - 1
+    }
+
+    fn next_vec<T: std::str::FromStr>(&mut self, n: usize) -> Vec<T> {
+        (0..n).map(|_| self.next()).collect()
+    }
+
+    fn next_2d<T: std::str::FromStr>(&mut self, n: usize, m: usize) -> Vec<Vec<T>> {
+        (0..n).map(|_| self.next_vec(m)).collect()
+    }
+
+    fn next_chars(&mut self) -> Vec<char> {
+        self.next::<String>().chars().collect()
+    }
+}
+
+fn main() {
+    let m = 998_244_353u64;
+    let mut sc = Scanner::new();
+    let s: Vec<char> = sc.next_chars();
+
+    let mut ans = 0u64;
+    let mut current_len = 0u64;
+    let mut last_char = ' ';
+
+    for ch in s {
+        if ch != last_char {
+            current_len += 1;
+        } else {
+            current_len = 1;
+        }
+
+        ans = (ans + current_len) % m;
+        last_char = ch;
+    }
+
+    println!("{ans}");
+}

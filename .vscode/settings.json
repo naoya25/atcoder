@@ -9,7 +9,8 @@
   "code-runner.clearPreviousOutput": true,
   "code-runner.executorMap": {
     "dart": "dart run $dir/$fileName < ./input.txt",
-    "python": "python3 -u $dir/$fileName < ./input.txt"
+    "python": "python3 -u $dir/$fileName < ./input.txt",
+    "rust": "cd $dir && cargo run --bin $fileNameWithoutExt < $workspaceRoot/input.txt"
   },
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
   "cSpell.words": [
